@@ -1,0 +1,26 @@
+<section class="content-container pure-u-1">
+  <div class="content">
+    <header class="pure-u-1">
+      <h1>
+        <span class="content-title"><%= @content_pack.name %></span>
+        <%= link_to "", edit_content_pack_path(@content_pack), :class => "icon-edit", :title => "Edit Setting" %>
+        <%= render "topics/filter" %>
+      </h1>
+      <h2><strong>Type</strong>: <span><%= @content_pack.content_type.name %></span></h2>
+      <%= link_to "< BACK TO CONTENT PACKS", root_path, :class => "link" %>
+      <div class="button-group">
+        <%= link_to "New Topic", new_content_pack_topic_path(@content_pack, @topic), :class => "pure-button pure-button-info pure-button-small", :id => "new_topic_link" %>
+        <%= link_to "New Selection", new_content_pack_selection_path(@content_pack, @topic), :class => "pure-button pure-button-info pure-button-small", :id => "new_selection_link" %>
+        <%= link_to "Import Selection", "#", :class => "pure-button pure-button-small", :disabled => true %>
+        <div class="pure-button-group">
+          <a href="#" class="pure-button">More Actions</a>
+          <ul>
+            <li><a href="#">Word Audio Dictionary</a></li>
+            <li><a href="#">Import Audio</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <%= render "topics/list", topics: @topics %>
+  </div>
+</section>

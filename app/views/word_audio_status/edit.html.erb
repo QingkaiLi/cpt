@@ -1,0 +1,11 @@
+<div id="import_audio">
+  <p class="alert-explanation pure-u-1"></p>
+  <p><b>Word</b>: <span><%= @word_audio_status.spelling %> <% if @word_audio_status.words.first.alt_text %>(<%= @word_audio_status.words.first.alt_text %>)<% end %></span></p>
+  <p><b>Filename</b>: <span class="file-name"><%= @word_audio_status.audio.file_name %></span></p>
+  <%= form_tag("/audios/#{@word_audio_status.audio.id}", :method => "put", :class => "pure-form", :id => "edit_audio", :multipart => true) do %>
+    <p><b>File to import:</b></p>
+    <span id="audio_file_upload_display">&nbsp;</span>
+    <a class="pure-button pure-button-small browse-file">Browse</a>
+    <input id="audio_file_upload" type="file" name="file">
+  <% end %>
+</div>

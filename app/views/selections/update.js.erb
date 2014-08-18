@@ -1,0 +1,9 @@
+var data = "<%= escape_javascript(render(@selection.errors.any? ? 'form' : 'topics/list')) %>";
+if(<%= @selection.errors.any? %>) {
+  scilearn.panel["editSelection"].content(data);
+} else {
+  scilearn.panel["editSelection"].close();
+  $('#topics_list').html($(data).html());
+  scilearn.topic.initEvent();
+  scilearn.topic.clearFilter();
+}

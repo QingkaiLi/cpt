@@ -1,0 +1,38 @@
+# This is an example for a user 'cpt'
+# with no password, database cpt
+# developement, test and production
+# all use the same database
+#
+# You can get this with:
+# $ mysql -u root
+# mysql> CREATE USER 'cpt'@'localhost' IDENTIFIED BY '';
+# mysql> create database cpt;
+# mysql> grant usage on *.* to cpt@localhost;
+# mysql> grant all privileges on cpt.* to cpt@localhost ;
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: cpt # enter your database name
+  pool: 5
+  username: cpt # enter your user name
+  password:     # enter your password
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: cpt # enter your database name
+  pool: 5
+  username: cpt # enter your user name
+  password:     # enter your password
+ 
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: cpt # enter your database name
+  pool: 5
+  username: cpt # enter your user name
+  password:     # enter your password

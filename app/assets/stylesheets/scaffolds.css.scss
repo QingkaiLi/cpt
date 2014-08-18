@@ -1,0 +1,388 @@
+@import "mixin";
+
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"],
+body,
+input,
+button,
+select,
+textarea {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  display: inline;
+  label,
+  attr {
+    color: #f00 !important;
+  }
+}
+
+.logout {
+  margin: 0 20px 0 9px;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+.navbar {
+  padding: 25px 0;
+  width: 960px;
+  margin: 0 auto;
+  line-height: 40px;
+}
+
+.hide {
+  display: none;
+}
+
+a.link {
+  color: #09f;
+  text-decoration: none;
+  &:hover{
+    color: #069;
+    text-decoration: underline;
+  }
+}
+
+.brand {
+  height: 42px;
+  background: image-url("brand.png") no-repeat 0 center;
+}
+
+.pure-button-xsmall {
+  font-size: 70%;
+}
+
+.pure-button-small {
+  font-size: 80%;padding: .5em 1em;
+}
+
+.pure-button-large {
+  font-size: 110%;
+}
+
+.pure-button-xlarge {
+  font-size: 125%;
+}
+
+.content-container {
+  min-width: 960px;
+  background: image-url("content-bg.png") repeat-x;
+}
+
+.content {
+  width: 960px;
+  min-height: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+  header {
+    overflow: hidden;
+    margin: 30px 0 10px 0;
+    h1,
+    h2 {
+      margin: 0;
+      font:1.75em arial,sans-serif;
+    }
+    h1 {
+      color: #f60;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      @include clearfix;
+      .content-title {
+        max-width: 45%;
+        display: inline-block;
+        @include ellipsis;
+        @include float;
+      }
+      .icon-edit {
+        @include float;
+        height: 32px;
+      }
+      #filter {
+        position: absolute;
+        color: #666;
+        font-weight: bold;
+        font-size: 14px;
+        @extend .align-left;
+        right: 0;
+        line-height: 25px;
+        margin-top: 6px;
+        &>a {
+          font-size: .7em;
+          font-weight: bold;
+        }
+        a {
+          color: #369;
+          font-size: 12px;
+          font-weight: normal;
+        }
+        select {
+          min-width: 130px;
+          margin-left: 10px;
+        }
+      }
+    }
+    h2 {
+      color: #333;
+      font-size: .9em;
+      span {
+        font-weight: normal;
+      }
+    }
+    &>a {
+      font-size: .7em;
+      font-weight: bold;
+    }
+    .button-group {
+      @extend .align-right;
+      @extend .pull-right;
+      line-height: 26px;
+    }
+  }
+}
+
+
+.pull-left {
+  @include float-left;
+}
+
+.pull-right {
+  @include float-right;
+}
+
+.align-left {
+  text-align:left;
+}
+
+.align-right {
+  text-align:right;
+}
+
+.align-center {
+  text-align:center;
+}
+
+.error-explanation{
+  @include flash-message(#f00, "error")
+}
+
+.alert-explanation{
+  @include flash-message;
+  li:first-child {
+    list-style: none;
+  }
+}
+
+.panel-container {
+  width: 1px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* btns */
+
+.pure-button-small {
+  @include btn;
+  color: #333;
+  &.pure-button-cancel {
+    @include btn("cancel");
+  }
+  &.pure-button-info {
+    @include btn("info");
+  }
+  &.pure-button-success {
+    @include btn("success");
+  }
+}
+
+/* btn group */
+.pure-button-group {
+  @include btn-group;
+}
+
+/* icons */
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.icon-delete {
+  @extend .icon;
+  background-image: image-url("blue-trash.png");
+}
+.icon-edit {
+  @extend .icon;
+  background-image: image-url("blue-edit.png");
+}
+.icon-delete.disabled,
+.icon-delete[disabled] {
+  background-image: image-url("gray-trash.png");
+}
+.icon-edit.disabled,
+.icon-edit[disabled] {
+  background-image: image-url("gray-edit.png");
+}
+.icon-arrow-down {
+  @extend .icon;
+  background-image: image-url("arrow-down.png");
+}
+.icon-arrow-right {
+  @extend .icon;
+  background-image: image-url("arrow-right.png");
+}
+.icon-copy-move {
+  @extend .icon;
+  background-image: image-url("icon-copy-and-move.png");
+}
+
+/* qtip */
+
+.qtip {
+  position: absolute;
+  left: -28000px;
+  top: -28000px;
+  display: none;
+  min-width: 3em;
+  max-width: 15em;
+  font-size: 12px;
+  line-height: 12px;
+  direction: ltr;
+  @include border-radius(2px);
+  @include box-shadow(3px 3px 5px rgba(0,0,0,0.2));
+}
+
+.qtip-content {
+  position: relative;
+  padding: 0.2em 0.5em 0.3em;
+  overflow: hidden;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.qtip-default {
+  color: #333;
+  background: #FFF6D5;
+  background: #ffc;
+  border: solid 1px #aa8;
+}
+
+/* dialog content */
+.dialog-content-form {
+  font-size: 12px;
+  margin: 0 8px;
+  .pure-control-group {
+    margin: 5px 0;
+    .pure-controls {
+      input {
+        margin: 5px 0;
+      }
+    }
+  }
+  textarea {
+    margin-top: 5px;
+    padding: 16px 19px;
+    outline: none;
+    resize: none;
+  }
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    &.error {
+      color: #f00;
+      attr {
+        color: #f00;
+      }
+    }
+  }
+  attr {
+    font-weight: normal;
+    color: #1F8DD6;
+    margin: 2px;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 12px;
+  }
+  select {
+    padding: 0.3em 0.6em !important;
+  }
+}
+
+.dataTables_wrapper {
+  .bottom {
+    @include pagination;
+  }
+}
+
+/* notification */
+.gritter-with-image {
+  p {
+    @include force-wrap;
+  }
+}
+
+
+/* miscellaneous */
+
+.debug_dump {
+  margin: 3em 0 1em;
+  padding: 1.3em;
+  background: #e0e0e0;
+  color: #333;
+  border: 1px solid #eee;
+  line-height: 1.3em;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  -webkit-box-size: border-box;
+  -moz-box-size: border-box;
+  box-size: border-box;
+}

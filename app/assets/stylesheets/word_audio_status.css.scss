@@ -1,0 +1,83 @@
+@import "mixin";
+
+@mixin status-icon($status: 'approved') {
+  .#{$status} {
+    background: image-url("word-audio-status/#{$status}.png") center center no-repeat;
+  }
+}
+
+.content-container {
+  .table-containter {
+    @include library-table;
+    table {
+      .word-status {
+        display: inline-block;
+        height: 20px;
+        width: 100%;
+      }
+      @include status-icon;
+      @include status-icon("needs-review");
+      @include status-icon("no-audio-file");
+      .word {
+        &.red{
+          color: #c00;
+        }
+      }
+      .desc {
+        @include none-select;
+        min-height: 20px;
+        width: 100%;
+        display: inline-block;
+        input {
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          position: absolute;
+        }
+        &.edit {
+          height: 25px;
+          color: transparent;
+          position: relative;
+        }
+      }
+    }
+    .pagination {
+      @include pagination;
+    }
+  }
+}
+
+
+.play-icon {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  cursor: pointer;
+  background: image-url("play-start.png");
+}
+.stop {
+  background: image-url("play-stop.png") !important;
+}
+
+#edit_audio {
+  position: relative;
+  #audio_file_upload_display {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 385px;
+    height: 21px;
+    line-height: 21px;
+    padding: 1px 3px;
+  }
+  #audio_file_upload {
+    @include opacity(0);
+    position: absolute;
+    left: 0;
+    top: 28px;
+    width: 388px;
+    zoom:30;
+    font-size: 300px\9;
+    cursor: pointer;
+  }
+}

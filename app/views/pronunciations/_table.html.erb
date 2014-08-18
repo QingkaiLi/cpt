@@ -1,0 +1,64 @@
+<section class="table-containter">
+  <header class="pure-g">
+    <div class="pure-u-2-5">
+      <input type="text" class="pure-input" name="search" value="<%= @search %>">
+      <button id="search-btn" class="pure-button pure-button-small">Search</button>
+      <%= clear_search %>
+    </div>
+    <div class="pure-u-1-5 align-center">
+      <%= link_to "Audio Library", word_audio_status_index_path, :class => "pure-button pure-button-small" %>
+    </div>
+    <div class="pure-u-2-5 align-right">
+      <label for="filter">Filter Status By</label>
+      <%= select_tag 'filter', options_from_collection_for_select(PronunciationStatus.all, 'id', 'name', @filter), options ={:prompt => "None Selected"}%>
+      <%= clear_filter %>
+    </div>
+  </header>
+  <section class="pure-u" id="pronunciation_table">
+    <table class="pure-table pure-table-horizontal pure-table-striped pure-table-1">
+      <colgroup>
+        <col style="width: 86px;">
+        <col style="width: 250px;">
+        <col style="width: 594px;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th class="pronunciation-sort">
+            <%= sortable "Word/Alternate Text" %>
+          </th>
+          <th>Pronunciation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @pronunciations.empty? %>
+          <tr><td colspan="3">
+            <p class="empty-info">No results to show with the current filter.</p>
+          </td></tr>
+        <% else %>
+          <% @pronunciations.each do |pronunciation| %>
+            <tr id="pronunciation_<%= pronunciation.id %>">
+              <td><%= pronunciation_span(pronunciation) %></td>
+              <td><span class="word"><%= pronunciation.dictionary_key %></td>
+              <td><div class="desc"><%= pronunciation.phoneme %></div></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <div class="dataTables_info">Total: <%= @pronunciations.total_entries %></div>
+      <div class="dataTables_paginate paging_full_numbers">
+        <%= will_paginate @pronunciations, {:renderer => "PaginationHelper::LinkRenderer", previous_label: '', next_label: '&nbsp;', container: false} %>
+        <%= page_entries_info @pronunciations %>
+      </div>
+      <div class="dataTables_length">
+        <%= hidden_field_tag "order", @request_order %>
+        <%= hidden_field_tag "page", '1' %>
+        <label>Item Per Page
+          <%= select_tag "per_page", options_for_select([[10,10],[30,30],[50,50],[100,100],["Show All",-1]], per_page) %>
+        </label>
+      </div>
+    </div>
+  </section>
+</section>

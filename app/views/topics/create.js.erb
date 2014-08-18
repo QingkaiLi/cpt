@@ -1,0 +1,13 @@
+var data = "<%= escape_javascript(render(@topic.errors.any? ? 'form' : 'list')) %>";
+if(<%= @topic.errors.any? %>) {
+  scilearn.panel["newTopic"].content(data);
+} else {
+  scilearn.panel["newTopic"].close();
+  $('#topics_list').html($(data).html());
+  scilearn.topic.initEvent();
+  scilearn.topic.clearFilter();
+  <% if @topics and @topics.any? %>
+  $('#filter').removeClass('hide');
+  $('#topics_list').removeClass('empty');
+  <% end %>
+}

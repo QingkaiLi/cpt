@@ -1,0 +1,46 @@
+<%= hidden_field_tag :keyword, @search_key_word %>
+<%= hidden_field_tag :filter_text, @filter %>
+<table class="pure-table pure-table-horizontal pure-table-striped pure-table-1" id="audio_library_table">
+  <colgroup>
+    <col style="width: 86px;">
+    <col style="width: 89px;">
+    <col style="width: 250px;">
+    <col style="width: 505px;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Enable</th>
+      <th>Word</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @word_audio_statuses.empty? %>
+      <tr><td colspan="4">
+        <p class="empty-info">No results to show with the current filter.</p>
+      </td></tr>
+    <% else %>
+      <% @word_audio_statuses.each do |w| %>
+      <tr id="word_<%= w.id %>">
+        <td><%= audio_status w.id, w.name %></td>
+        <td><%= enable_checkbox w %></td>
+        <td><%= word_spelling w %></td>
+        <td><span class="desc"><%= w.description %></span></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<div class="pagination">
+  <div class="dataTables_info">Total: <%=  @word_audio_statuses.total_entries %></div>
+  <div class="dataTables_paginate paging_full_numbers">
+    <%= will_paginate @word_audio_statuses, {:renderer => "PaginationHelper::LinkRenderer", previous_label: '', next_label: '&nbsp;', container: false} %>
+    <%= page_entries_info @word_audio_statuses %>
+  </div>
+  <div class="dataTables_length" id="words_table_length">
+    <%= label_tag 'per_page' do %>Item Per Page
+      <%= select_tag "per_page", options_for_select([[10,10],[30,30],[50,50],[100,100],["Show All",-1]],@per_page) %>
+    <% end %>
+  </div>
+</div>

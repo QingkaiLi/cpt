@@ -1,0 +1,159 @@
+@import "mixin";
+
+/*topics table style*/
+#topics_list {
+  min-height: 512px;
+  min-width: 952px;
+  border: 4px solid #ccc;
+  font-size: 14px;
+  overflow: hidden;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  background: image-url("topic-list-bg.png") left 32px;
+  ul,
+  li {
+    list-style: none;
+  }
+  .icon {
+    @include float;
+    height: 30px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  .topic {
+    color: #333;
+    .topic-info {
+      overflow: hidden;
+      font-size: 16px;
+      font-weight: bold;
+      .col-name {
+        margin-left: 15px;
+        max-width: 150px;
+        // display: inline-block;
+        float: left;
+        @include ellipsis;
+      }
+      &:hover {
+        background-color: #99cdff;
+      }
+    }
+    .selection {
+      font-size: 13px;
+      .icon-delete {
+        margin-left: 35px;
+      }
+      .col-name {
+        margin-left: 9px;
+        font-weight: bold;
+        color: #369;
+        display: inline-block;
+        max-width: 180px;
+        @include ellipsis;
+      }
+      &:hover {
+        background-color: #99cdff;
+      }
+    }
+    &>ul {
+      margin: 0;
+      padding: 0;
+    }
+    .col {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 10px;
+      @include ellipsis;
+    }
+  }
+  .selection {
+    overflow: hidden;
+  }
+  .col-title {
+    width: 313px;
+  }
+  .col-grade-level {
+    width: 95px;
+  }
+  .col-status {
+    width: 127px;
+  }
+  .col-update-at {
+    width: 140px;
+  }
+  .col-update-by {
+    width: 127px;
+  }
+  .col-errors {
+    width: 90px;
+  }
+  #topic_header {
+    color:#fff;
+    height: 32px;
+    background: image-url("main-table-head-bg.png") repeat-x;
+    .col {
+      height: 32px;
+      line-height: 32px;
+      text-indent: .5em;
+      background: image-url("main-table-head-split.png") no-repeat left center;
+      font-weight: bold;
+      &:first-child {
+        background: none;
+      }
+    }
+  }
+  .col {
+    @include float;
+  }
+  &.empty {
+    background: none;
+    .empty-info {
+      display: block;
+    }
+  }
+  .empty-info {
+    display: none;
+  }
+}
+
+
+/*sort placeholder style*/
+.topic-placeholder {
+  visibility: visible !important;
+  height: 26px !important;
+  border: 2px solid #99CDFF;
+  background-color: #E2F0FD;
+  .selection {
+    height: 0;
+  }
+  .icon-arrow-down {
+    background-image: image-url("arrow-right.png");
+  }
+}
+.selection-placeholder {
+  visibility: visible !important;
+  height: 26px !important;
+  border: 2px solid #99CDFF;
+  background-color: #E2F0FD;
+}
+.ui-sortable-helper {
+  visibility: hidden;
+}
+
+/*artDialog move/copy style*/
+#move_copy_form {
+  select {
+    width: 250px;
+  }
+  label {
+    font-weight: bold;
+  }
+}
+/*move_copy selection page*/
+#move_copy_selection {
+  p {
+    @include ellipsis;
+    white-space: pre-line;
+    width: 360px;
+  }
+}

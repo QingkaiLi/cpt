@@ -1,0 +1,12 @@
+var $wordTr = $('#word_<%=  @word_audio_status.id %>');
+$wordTr.find('td:first a').replaceWith('<%= audio_status @word_audio_status.id, @word_audio_status.audio_status.name %>');
+$wordTr.find('input:checkbox').prop('checked', <%= @word_audio_status.enabled %>);
+$wordTr.find('.desc').html("<%= @word_audio_status.description %>");
+if (<%= @color_status.num %> > 1) {
+  $(".word").each(function (i,v) {
+    if ($(this).text() === '<%= @color_status.spelling %>') {
+      $(this).toggleClass('red',!<%= @word_audio_status.enabled %>)
+    }
+  })
+}
+$('.word-status').qtip()

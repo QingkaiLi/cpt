@@ -1,0 +1,30 @@
+<%= form_for @content_pack, remote: true, html: { class: "pure-form dialog-content-form" } do |f| %>
+  <%= error_explanation @content_pack %>
+  <div class="pure-control-group">
+    <%= f.label :name, :id => "content_pack_name_label" do%>
+      Name<attr title="required">*</attr>
+    <% end %>
+    <%= f.text_field :name, :placeholder => "content name", :class => "pure-input-2-3", :maxlength => 256 %>
+  </div>
+  <div class="pure-control-group">
+    <%= f.label :content_type_id do%>
+      Type<attr title="required">*</attr>
+    <% end %>
+    <% if @content_types.nil? %>
+      <span class="content-pack-type"><%= @content_pack.content_type.name %></span>
+    <% else %>
+      <%= f.select :content_type_id, options_from_collection_for_select(@content_types, "id", "name", @content_pack.content_type_id), :class => "pure-input-medium", :required => true %>
+    <% end %>
+  </div>
+  <div class="pure-control-group">
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, :maxlength => 1024, :placeholder => "description", :class => "pure-input-1", :rows => 10 %>
+  </div>
+  <div class="pure-u-1">
+    <attr>*</attr>Indicates required field.
+  </div>
+  <div class="actions">
+    <%= f.button "Save", class: "pure-button pure-button-small pure-button-success", data: { disable_with: "Please wait..." } %>
+    <%= f.button "Cancel", type: "button", class: "pure-button pure-button-small pure-button-cancel", data: { dismiss: true } %>
+  </div>
+<% end %>

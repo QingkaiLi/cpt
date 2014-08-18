@@ -1,0 +1,35 @@
+@import "mixin";
+
+@mixin pronunciation-status-icon($status: 'approved') {
+  .#{$status} {
+    background: image-url("pronunciation-status/#{$status}.png") center center no-repeat;
+  }
+}
+
+#pronunciation_table {
+  @include pronunciation-status-icon;
+  @include pronunciation-status-icon("needs-review");
+  .needs-review {
+    cursor: pointer;
+  }
+  @include pronunciation-status-icon("missing-pronunciation");
+  .invalid {
+    color: #b94a48;
+    border: 1px solid #ee5f5b;
+  }
+}
+
+.pronunciation-sort {
+  .sort-icon {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+  .asc {
+    background: image-url("white-down-arrow.png") no-repeat right;
+  }
+  .desc {
+    background: image-url("white-up-arrow.png") no-repeat right;
+  }
+}
+

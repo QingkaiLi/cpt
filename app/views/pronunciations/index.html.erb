@@ -1,0 +1,11 @@
+<article class="content-container pure-u-1">
+  <div class="content">
+    <header>
+      <h1>Word Audio and Pronunciations: Pronunciation Library</h1>
+      <%= link_to "< Back", @referer_url, :class => "link", :title => "back" %>
+    </header>
+    <%= form_for(:pronunciation, method: :GET, html: { class: "pure-form" , id: "pronunciation_form"}) do |f| %>
+      <%= render 'table' %>
+    <% end %>
+  </div>
+</article>

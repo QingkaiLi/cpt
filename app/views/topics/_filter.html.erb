@@ -1,0 +1,7 @@
+<div id="filter" <%= 'class=hide' if empty?(@topics) %> >
+	<%= label_tag(:q, "Filter Selections By") %>
+	<%= select_tag :filter_by, options_for_select([['None Selected', 0], ['Status', 1], ['Errors', 2]], 0)%>
+	<%= select_tag :filter_status, options_for_select(Status.all.map { |s| [s.name, s.id] }), :class => "hide" %>
+	<%= select_tag :filter_errors, options_for_select([['Has Errors', 0], ['No Errors', 1], ['Needs Errors Check']]), :class => "hide" %>
+	<%= link_to "Clear filter","#", :class => "link hide", :id => "filter_clear" %>
+</div>

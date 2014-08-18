@@ -1,0 +1,58 @@
+@wip
+Feature: Audio library have pagination
+  1. The total number of items in the Word Audio Repository is displayed at the left bottom
+  2. The user can navigate between pages of the audio library by the page number or the left/right arrow
+  3. The user can select how many items are displayed per page via drop down. '30' is the default value for the drop down.
+
+  Background:
+    Given the authentication provider "cas" of uid "123456" has user with name: "Test Engineer"
+
+  @javascript
+  Scenario Outline: When there are many itmes in audio library, check the total number and page number.
+    Given <total number> words exist
+    And I am in Word Audio and Pronunciations page
+    Then I should see "Total: <total number>" and <page number> page number in the bottom
+    Examples:
+      | total number | page number |
+      | 10           | 1           |
+      | 29           | 1           |
+      | 30           | 1           |
+      | 31           | 2           |
+      | 60           | 2           |
+      | 100          | 4           |
+
+  @javascript
+  Scenario: When there are many items exist in auido library, check the function of pagination.
+    Given 150 words exist
+    And I am in Word Audio and Pronunciations page
+    Then I should see "Total: 100" and 30 page number in the bottom
+    And the current page number is 1
+    And the "previous page" link is inactive
+    When I click "next page"
+    Then the current page number is 2
+    When I click "previous page"
+    Then the current page number is 1
+    When I click "2"
+    Then the current page number is 2
+    When I click "3"
+    Then the current page number is 3
+    When I click "next page"
+    Then the current page number is 4
+    When I click "5"
+    Then the current page number is 5
+    And the "next page" link is inactive
+
+  @javascript
+  Scenario: When there are many items exist in audio library, check the function of items per page
+    Given 100 content packs exist
+    And I am in Word Audio and Pronunciations page
+    Then I should see 30 records in current page
+    And I select "10" as "Item Per Page"
+    Then I should see 10 records in current page
+    And I select "50" as "Item Per Page"
+    Then I should see 50 records in current page
+    And I select "100" as "Item Per Page"
+    Then I should see 100 records in current page
+    And I select "Show All" as "Item Per Page"
+    Then I should see 100 records in current page
+

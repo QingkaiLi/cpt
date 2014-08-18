@@ -1,0 +1,23 @@
+@import "mixin";
+
+#glue_word_upload {
+  position: relative;
+  #glue_word_list_name {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 200px;
+    height: 21px;
+    line-height: 21px;
+    padding: 1px 3px;
+  }
+  #browse_glue_word_list {
+    @include opacity(0);
+    position: absolute;
+    bottom: 15px;
+    left: 123px;
+    top: 14px;
+    width: 208px;
+    cursor: pointer;
+    z-index: 10;
+  }
+}

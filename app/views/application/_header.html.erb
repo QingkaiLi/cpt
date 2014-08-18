@@ -1,0 +1,22 @@
+<header class="navbar pure-g">
+  <div class="brand pure-u-1-2">
+  </div>
+  <div class="align-right pure-u-1-2">
+    <% if current_user %>
+      <span><%= current_user.name %></span>
+      <%= link_to "Logout", logout_path, :class => "pure-button pure-button-small logout" %>
+      <div class="pure-button-group">
+        <a href="#" class="pure-button">More Actions</a>
+        <ul>
+          <% unless controller_name.in?(["words","pronunciations"]) %>
+            <li> <%= link_to "Word Audio Dictionary", word_audio_status_index_path %> </li>
+          <% end %>
+          <li><a href="#">Import Audio</a></li>
+          <li><%= link_to 'Import Glue Words',new_glue_word_path, id:  'import_glue_words' %></li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to "Login", 'auth/cas', :class => "pure-button pure-button-small" %>
+    <% end %>
+  </div>
+</header>

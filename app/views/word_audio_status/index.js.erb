@@ -1,0 +1,3 @@
+$('#words_list').html('<%= escape_javascript(render("table")) %>');
+$('#clear_search').toggle(<%= !@search_key_word.blank? %>);
+$('#clear_filter').toggle(<%= !@filter.blank? %>);

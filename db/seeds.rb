@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Status.create([
+  { name: 'In Progress' },  
+  { name: 'Approved' }, 
+  { name: 'Published' },
+  { name: 'Ready to Review' } ])
+
+AudioStatus.create([
+  { name: 'Missing' },  
+  { name: 'Needs Review' }, 
+  { name: 'Approved' } ])
+
+ContentType.create([
+  { name: 'Reading Assistance' }, 
+  { name: 'Fluency Assessment' } ])

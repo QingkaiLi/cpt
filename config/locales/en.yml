@@ -20,4 +20,63 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  content_packs:
+    controller:
+      update:
+        failed: The content pack %{name} settings cannot be edited while the content pack is published.
+      edit:
+        failed:
+          published: The content pack %{name} settings cannot be edited while the content pack is published.
+      delete:
+        failed:
+          deleted: The content pack %{name} has been deleted.
+          published: The content pack %{name} cannot be deleted while it published.
+          not_empty: The content pack %{name} cannot be deleted while it contains selections. Selections within the content pack must be deleted first.
+  topics:
+    controller:
+      edit:
+        failed:
+          published: The %{name} topic cannot be edited while the topic is published.
+      delete:
+        failed:
+          deleted: The %{name} topic has been deleted.
+          published: The topic %{name} cannot be deleted while its content pack published.
+          not_empty: The topic %{name} cannot be deleted as it is not empty. Selections within the topic must be deleted or moved first.
+  selections:
+    controller:
+      edit:
+        failed:
+          published: The %{name} selection cannot be edited while the selection is published.
+      delete:
+        failed:
+          deleted: The %{name} selection has been deleted.
+          published: The %{name} selection cannot be deleted while it published.
+  errors:
+    format: "%{message}"
+    messages:
+      blank: Required field %{attribute} missing.
+      taken: The %{model} %{attribute} is already in use. Please enter a different value.
+  activerecord:
+    errors:
+      models:
+        topic:
+          attributes:
+            name:
+              presence: The %{attribute} name is already in use. Please enter a different value.
+            grade_level:
+              invalid: "%{attribute}. format X.X, X is an integer between 1 and 100."
+              not_a_number: "%{attribute}. format X.X, X is an integer between 1 and 100."
+              less_than: "%{attribute}. format X.X, X is an integer between 1 and 100."
+              greater_than_or_equal_to: "%{attribute}. format X.X, X is an integer between 1 and 100."
+        selection:
+          attributes:
+            wcpm_target: 
+              invalid: "%{attribute} is an integer between 1 and 999."
+              not_a_number: "%{attribute} is an integer between 1 and 999."
+              less_than: "%{attribute} is an integer between 1 and 999."
+              greater_than: "%{attribute} is an integer between 1 and 999."
+              not_an_integer: "%{attribute} is an integer between 1 and 999."
+
+  time:
+    formats:
+      m_d_y: "%m/%d/%Y"

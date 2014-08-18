@@ -1,0 +1,21 @@
+defaults: &defaults
+  app_name: RA Content Production Tool
+  omniauth:
+    scilearn:
+      host: eagles.scilearn.cn
+      port: 8080
+      ssl: true
+      login_url: /cas/login
+      logout_url: /cas/logout
+      service_validate_url: /cas/serviceValidate
+  msl_url: http://eagles.scilearn.cn/slc
+  enabled_district: ['201314','20120828']
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

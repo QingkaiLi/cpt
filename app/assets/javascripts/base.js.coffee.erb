@@ -1,0 +1,99 @@
+@scilearn =
+  panel: {}
+  version: "0.0.0.1"
+  build: "1.0.0.0"
+  product: "Reading Assistant Content Production Tool"
+  config:
+    dev: true
+    cache: false
+    showMessage: true
+  notification:
+    alert: (message, title) ->
+      $.gritter.add
+        title: if title? then title else "Alert"
+        text: $.convertHtml message
+        image: "<%= asset_path('notification/notification-alert.png')%>"
+    confirm: (message, title) ->
+      $.gritter.add
+        title: if title? then title else "Confirm"
+        text: $.convertHtml message
+        image: "<%= asset_path('notification/notification-confirm.png')%>"
+    error: (message, title) ->
+      $.gritter.add
+        title: if title? then title else "Error"
+        text: $.convertHtml message
+        image: "<%= asset_path('notification/notification-error.png')%>"
+    info: (message, title) ->
+      $.gritter.add
+        title: if title? then title else "Info"
+        text: $.convertHtml message
+        image: "<%= asset_path('notification/notification-info.png')%>"
+
+$._messengerDefaults =
+  extraClasses: 'messenger-fixed messenger-theme-ice messenger-on-top messenger-on-right'
+
+$.fn.dataTableExt.oPagination.iFullNumbersShowPages = 10
+
+class extends jQuery
+  jQuery.fn.serializeJSON = ->
+    serializeObj = {}
+    array = @serializeArray()
+    str = @serialize()
+    $(array).each ->
+      if serializeObj[@name]?
+        if jQuery.isArray serializeObj[@name]
+          serializeObj[@name].push @value
+        else
+          serializeObj[@name] = [serializeObj[@name], @value]
+      else
+        serializeObj[@name] = @value
+    serializeObj
+
+  jQuery.fn.isDisabled = ->
+    attrDisabled = @.prop("disabled")
+    classDisabled = @hasClass("disabled")
+    classDisabled || attrDisabled is true
+
+  jQuery.extend
+    isEmptyArray: (array) ->
+      jQuery.isArray(array) and not array.length
+    convertHtml: (data)->
+      jQuery('<div></div>').text(data).html()
+
+class Log extends @
+  if console? and console.log?
+    @scilearn.log = if console.log.apply then ->
+      console.log.apply console, arguments
+    else console.log
+  else
+    @scilearn.log = ->
+
+class extends art.dialog.defaults
+  options =
+    lock: true
+    drag: false
+    resize: false
+    padding:"0 15px"
+    okVal: "Save"
+    cancelVal: "Cancel"
+  $.extend _super, options
+
+
+jQuery.extend jQuery.fn.dataTableExt.oSort,
+  "date-us-pre": (a) ->
+    usDatea = a.split '/'
+    +(usDatea[2] + usDatea[0] + usDatea[1])
+  "date-us-asc": (a, b) ->
+    if a < b
+      -1
+    else if a > b
+      1
+    else
+      0
+  "date-us-desc": (a, b) ->
+      if a < b
+        1
+      else if a > b
+        -1
+      else
+        0

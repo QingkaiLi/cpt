@@ -1,0 +1,60 @@
+<table class="pure-table pure-table-horizontal pure-table-striped pure-table-1" id="content_packs_table">
+  <colgroup>
+    <col style="width: 210px;">
+    <col style="width: 263px;">
+    <col style="width: 152px;">
+    <col style="width: 125px;">
+    <col style="width: 90px;">
+    <col style="width: 116px;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>
+        <div unselectable="on" class="sort-liner">
+          Name<i class="sort-indicator"></i>
+        </div>
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        <div class="sort-liner" unselectable="on">
+          Last Edited Date<i class="sort-indicator"></i>
+        </div>
+      </th>
+      <th>
+        <div unselectable="on" class="sort-liner">
+          Type<i class="sort-indicator"></i>
+        </div>
+      </th>
+      <th>
+        <div unselectable="on" class="sort-liner">
+          Status<i class="sort-indicator"></i>
+        </div>
+      </th>
+      <th>
+        <div unselectable="on" class="sort-liner">
+          Created By<i class="sort-indicator"></i>
+        </div>
+      </th>
+      <th class="hide"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @content_packs.each do |content_pack| %>
+    <tr>
+      <td>
+        <%= link_to "", content_pack_path(content_pack.id), :title => "Delete", :class => "icon-delete#{' disabled' unless content_pack.empty?}", :data => {:name => content_pack.name, :message => error_notification(content_pack, "delete")}, "delete-for" => content_pack.name %>
+        <%= link_to "", edit_content_pack_path(content_pack),:title => "Edit Setting",:data => { :message => error_notification(content_pack, "edit")}, :class => "icon-edit#{' disabled' if content_pack.published?}", "edit-for" => content_pack.name %>
+        <%= link_to content_pack.name, content_pack_topics_path(content_pack.id), :class => "content-pack-name", :title => content_pack.name %>
+      </td>
+      <td class="content-pack-description"><%= content_pack.description %></td>
+      <td class="content-pack-last-update-date"><%= l(content_pack.updated_at, format: :m_d_y ) %></td>
+      <td class="content-pack-type"><%= content_pack.content_type.name %></td>
+      <td class="content-pack-status"><%= content_pack.status.name %></td>
+      <td class="content-pack-created-by"><%= content_pack.user.name %></td>
+      <td class="hide"><%= content_pack.updated_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

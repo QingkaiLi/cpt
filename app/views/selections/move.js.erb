@@ -1,0 +1,10 @@
+var data = "<%= escape_javascript(render('rename')) %>";
+
+if(<%= @selection.errors.any? %>) {
+  scilearn.selection.showRenameDialog(data);
+  scilearn.panel.moveCopySelection.hide();
+} else {
+  scilearn.selection.removeSelectionEle($("#selection_<%= @selection.id %>"));
+  scilearn.panel.moveCopySelection.close();
+  scilearn.panel.renameSelection.close();
+}

@@ -1,0 +1,18 @@
+<%= form_for :content_pack, :remote => true, html: { class: "pure-form pure-g dialog-content-form", id: "rename_form" } do |f| %>
+  <%= error_explanation @selection %>
+  <%= f.hidden_field :id, :value => @content_pack_id %>
+  <div class="pure-control-group">
+    <div class="pure-u-1-4 field_with_errors">
+    <%= f.label :title do %>
+      Title <attr title="required">*</attr>
+    <% end %>
+    </div>
+    <div class="pure-u-3-4">
+    <%= text_field_tag :title, @selection.title, :class => "pure-input-1", :maxlength => 256 %>
+    </div>
+  </div>
+  <div class="actions pure-u-1">
+    <%= f.button "Save", name: @action, class: "pure-button pure-button-small pure-button-success", data: { disable_with: "Please wait..." } %>
+    <%= f.button "Cancel", type: "button", class: "pure-button pure-button-small pure-button-cancel rename-cancle", data: { dismiss: true } %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<section class="content-container pure-u-1">
+  <div class="content">
+    <header class="pure-u-1">
+      <h1>
+        Content Packs
+      </h1>
+      <div class="button-group">
+        <%= link_to "New Content Pack", new_content_pack_path, :class => "pure-button pure-button-info pure-button-small", :id => "new_content_pack_link" %>
+        <%= link_to "Manage Audio Library", "#", :class => "pure-button pure-button-small", :disabled => true %>
+      </div>
+    </header>
+    <div class="pure-u-1">
+      <%= render 'table' %>
+    </div>
+  </div>
+</section>

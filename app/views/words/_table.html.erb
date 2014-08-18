@@ -1,0 +1,62 @@
+<%= hidden_field_tag :keyword, @search_key_word %>
+<table class="pure-table pure-table-horizontal pure-table-striped pure-table-1" id="audio_library_table">
+  <colgroup>
+    <col style="width: 86px;">
+    <col style="width: 89px;">
+    <col style="width: 250px;">
+    <col style="width: 505px;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Enable</th>
+      <th>Word</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="word-status approve"></span></td>
+      <td></td>
+      <td><span class="word">1500</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><span class="word-status need-review"></span></td>
+      <td></td>
+      <td><span class="word">1982</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><span class="word-status approve"></span></td>
+      <td><input type="checkbox" name="do"></td>
+      <td><span class="word">do</span></td>
+      <td><span class="desc">do!1</span></td>
+    </tr>
+    <tr>
+      <td><span class="word-status need-audio"></span></td>
+      <td><input type="checkbox" name="do"></td>
+      <td><span class="word red">do</span></td>
+      <td><span class="desc">do!2</span></td>
+    </tr>
+    <%# @word_audio_statuses.each do |w| %>
+    <!-- <tr>
+      <td><%#= w.audio_status_id %></td>
+      <td></td>
+      <td><%#= w.spelling %></td>
+      <td><%#= w.description %></td>
+    </tr> -->
+    <%# end %>
+  </tbody>
+</table>
+<div class="pagination">
+  <div class="dataTables_info">Total: 2</div>
+  <div class="dataTables_paginate paging_full_numbers">
+    <%= will_paginate(@word_audio_statuses, container: false, previous_label: "", next_label: "&nbsp;") %></a>
+  </div>
+  <div class="dataTables_length" id="words_table_length">
+    <%= label_tag 'per_page' do %>Item Per Page
+      <%= select_tag "per_page", options_for_select([[10,10],[30,30],[50,50],[100,100],["Show All",-1]],@per_page) %>
+    <% end %>
+  </div>
+</div>

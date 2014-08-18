@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.qtip.basic
+//= require jquery.artDialog.source
+//= require jquery.ui.sortable
+//= require gritter
+//= require dataTables/jquery.dataTables
 //= require turbolinks
+//= require jquery-fileupload/basic
 //= require_tree .

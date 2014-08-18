@@ -1,0 +1,68 @@
+<ul id="topics_list" class="pure-u-1<%= " empty" if empty?(@topics) %>">
+  <li class="topic">
+    <ul>
+      <li id="topic_header">
+        <div class="col col-title">Title</div>
+        <div class="col col-grade-level">Grade Level</div>
+        <div class="col col-status">Status</div>
+        <div class="col col-update-at">Last Edited Date</div>
+        <div class="col col-update-by">Last Edited By</div>
+        <div class="col col-errors">Errors</div>
+      </li>
+      <li class="topic-info" id="topic_<%= @topics[0].id %>"  style="display:none">
+        <span class="total-count"><%= @topics[0].selections.count %></span>
+      </li>
+      <% @topics[0].selections.each do |selection| %>
+        <li class="selection" id="selection_<%= selection.id %>" status="<%= selection.status.id %>" error="">
+          <div class="col col-title">
+            <%= link_to "", content_pack_selection_path(@topics[0].content_pack_id, selection.id), :data => {:method => :delete, :name => selection.title}, :class => "icon icon-delete selection-delete", "delete-for" => selection.title, :title => "Delete" %>
+            <%= link_to "", edit_content_pack_selection_path(@topics[0].content_pack_id, selection.id), :class => "icon icon-edit selection-edit", "edit-for" => selection.title, :title => "Edit Setting" %>
+            <%= link_to "", content_pack_move_copy_new_path(@topics[0].content_pack_id, selection.id), :data => {:method => :get}, :class => "icon icon-copy-move", "move-copy-for" => selection.title, :title => "Move/Copy" %>
+            <span title="<%= selection.title %>" class="col-name"><%= selection.title %></span></div>
+          <div class="col col-grade-level"></div>
+          <div class="col col-status"><%= selection.status.name %></div>
+          <div class="col col-update-at"><%= l(selection.updated_at, format: :m_d_y) %></div>
+          <div class="col col-update-by"><%= selection.updater.name %></div>
+          <div class="col col-errors">-</div>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+  <% @topics.drop(1).each do |topic| %>
+    <li class="topic undefault-topic">
+      <ul>
+        <li class="topic-info" id="topic_<%=topic.id %>">
+          <div class="col col-title">
+            <i class="icon icon-drop-down icon-arrow-down"></i>
+            <%= link_to "", topic_path(topic.id), :data => {:method => :delete, :name => topic.name, :message => topic_error_notification(topic, "delete")}, :class => "icon icon-delete topic-delete #{'disabled' if !topic.empty?}", "delete-for" => topic.name, :title => "Delete" %>
+            <%= link_to "", edit_topic_path(topic.id), :data => {:message => topic_error_notification(topic, "edit")}, :class => "icon icon-edit topic-edit #{'disabled' if topic.content_pack.published?}", "edit-for" => topic.name, :title => "Edit Setting" %>
+            <span title="<%= topic.name %>" class="col-name"><%= topic.name %></span>
+            (<span class="total-count"><%= topic.selections.count %></span>)
+          </div>
+          <div class="col col-grade-level"><%= topic.grade_level %></div>
+        </li>
+        <% topic.selections.each do |selection| %>
+          <li class="selection" id="selection_<%= selection.id %>" status="<%= selection.status.id %>" error="">
+            <div class="col col-title">
+              <%= link_to "", content_pack_selection_path(topic.content_pack_id, selection.id), :data => {:method => :delete, :name => selection.title}, :class => "icon icon-delete selection-delete", "delete-for" => selection.title, :title => "Delete" %>
+              <%= link_to "", edit_content_pack_selection_path(topic.content_pack_id, selection.id), :class => "icon icon-edit selection-edit", "edit-for" => selection.title, :title => "Edit Setting" %>
+              <%= link_to "", content_pack_move_copy_new_path(topic.content_pack_id, selection.id), :data => {:method => :get}, "move-copy-for" => selection.title, :class => "icon icon-copy-move", :title => "Move/Copy" %>
+              <span title="<%= selection.title %>" class="col-name"><%= selection.title %></span></div>
+            <div class="col col-grade-level"></div>
+            <div class="col col-status"><%= selection.status.name %></div>
+            <div class="col col-update-at"><%= l(selection.updated_at, format: :m_d_y) %></div>
+            <div class="col col-update-by"><%= selection.updater.name %></div>
+            <div class="col col-errors">-</div>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <li>
+    <% if empty?(@topics) %>
+      <p class="empty-info">Content Pack is empty. Create new topics, new selections, or import existing selections.</p>
+    <% else %>
+      <p class="empty-info">No slections to show with the current filter.</p>
+    <% end %>
+  </li>
+</ul>

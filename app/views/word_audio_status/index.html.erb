@@ -1,0 +1,30 @@
+<article class="content-container pure-u-1">
+  <div class="content">
+    <header>
+      <h1>Word Audio and Pronunciations: Audio Library</h1>
+      <%= link_to "< Back", @referer_url, :class => "link", :title => "back" %>
+    </header>
+    <section class="table-containter">
+      <%= form_tag word_audio_status_index_path, method: :get, id: "words_form", class: "pure-form" do %>
+      <header class="pure-g">
+        <div class="pure-u-2-5">
+          <%= text_field_tag 'search_text', @search_key_word, placeholder: 'Enter search term...', class: "pure-input" %>
+          <button type="submit" class="pure-button pure-button-small">Search</button>
+          <%= link_to "Clear Search", "#", class: "link hide", id: "clear_search" %>
+        </div>
+        <div class="pure-u-1-5 align-center">
+          <%= link_to "Pronunciation Library", pronunciations_path, :class => "pure-button pure-button-small" %>
+        </div>
+        <div class="pure-u-2-5 align-right">
+          <label for="filter">Filter Status By</label>
+          <%= select_tag 'filter', options_from_collection_for_select(AudioStatus.all, 'name', 'name') << options_for_select([ "No Audio Enabled"]), prompt: "None Selected" , id: 'filter' %>
+          <%= link_to "Clear Filter", "#", id: "clear_filter", class: "hide link" %>
+        </div>
+      </header>
+      <section class="pure-u" id="words_list">
+        <%= render 'table' %>
+      </section>
+      <% end %>
+    </section>
+  </div>
+</article>

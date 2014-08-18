@@ -1,0 +1,73 @@
+<%= form_for [@content_pack, @selection], remote: true, :html => { :class => "pure-form pure-g dialog-content-form", :id => "selection_dialog_form" }  do |f| %>
+  <%= hidden_field_tag "content_pack_id", @content_pack_id %>
+  <%= error_explanation @selection %>
+  <div class="pure-control-group">
+    <div class="pure-u-1-8">
+      <%= f.label :title do%>
+        Title<attr title="required">*</attr>
+      <% end %>
+    </div>
+    <div class="pure-u-7-8">
+      <%= f.text_field :title, :placeholder => "selection title", :class => "pure-input-1", :maxlength => 256 %>
+    </div>
+  </div>
+  <div class="pure-control-group pure-u-1">
+    <%= f.label :grade_equivalent_level do %>
+    Grade Equivalent Level<attr title="required">*</attr>
+    <% end %>
+    <%= f.select :grade_equivalent_level, options_for_select(Selection::GRADE_EQUIVALENT_LEVEL, @selection.grade_equivalent_level), include_blank: "None Selected" %>
+    <%= f.label :lexile_level, "Lexile Level" %>
+    <%= f.select :lexile_level, options_for_select(Selection::LEXILE_LEVEL, @selection.lexile_level), include_blank: "None Selected" %>
+    <%= f.label :guided_reading_level, "Guided Reading Level" %>
+    <%= f.select :guided_reading_level, options_for_select(Selection::GUIDED_READING_LEVEL, @selection.guided_reading_level), include_blank: "None Selected"%>
+  </div>
+  <div class="pure-control-group pure-u-1">
+    <%= f.label :wcpm_target, "WCPM Target" %>
+    <%= f.text_field :wcpm_target, :placeholder => "WCPM", :maxlength => 3, :type => "number", :min => 1, :max => 999 %>
+    <%= f.label :internationally, "Available Internationally" %>
+    <%= f.label :internationally_yes, :class => "pure-radio-inline" do %>
+      <%= f.radio_button :internationally, true, :checked => @selection.internationally %>Yes
+    <% end %>
+    <%= f.label :internationally_no, :class => "pure-radio-inline" do %>
+      <%= f.radio_button :internationally, false, :checked => !@selection.internationally %>No
+    <% end %>
+  </div>
+  <div class="pure-control-group pure-u-1">
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, :placeholder => "description", :maxlength => 1024, :class => "pure-input-1", :rows => 3 %>
+  </div>
+  <div class="pure-control-group">
+    <div class="pure-u-2-5">
+      <%= f.label :cover_image, "Cover Image" %> <br>
+      <span class="cover-image-warp"><i>None</i></span>
+      <%= link_to "Choose Image", "#", :class => "pure-button pure-button-small" %>
+    </div>
+    <div class="pure-u-3-5">
+       <div class="pure-controls">
+        <%= f.label :author, "Author" %>
+        <%= f.text_field :author, :placeholder => "author", :maxlength => 256, :class => "pure-input-1" %>
+      </div>
+      <div class="pure-controls">
+        <%= f.label :illustrator, "Illustrator" %>
+        <%= f.text_field :illustrator, :placeholder => "illustrator", :maxlength => 256, :class => "pure-input-1" %>
+      </div>
+      <div class="pure-controls">
+        <%= f.label :publisher, "Publisher" %>
+        <%= f.text_field :publisher, :placeholder => "publisher", :maxlength => 256, :class => "pure-input-1" %>
+      </div>
+    </div>
+  </div>
+  <div class="pure-control-group pure-u-1">
+    <span class="pull-right" id="intro_audio">audio sign</span>
+    <%= f.label :intro_text, "Introductory Text and Audio" %>
+    <%#= link_to "intro_audio", "#`"  %>
+    <%= f.text_area :intro_text, :placeholder => "introductory text", :maxlength => 1024, :class => "pure-input-1", :rows => 3 %>
+  </div>
+  <div class="pure-u-1">
+    <attr>*</attr>Indicates required field.
+  </div>
+  <div class="actions pure-u-1">
+    <%= f.button "Save", class: "pure-button pure-button-small pure-button-success", data: { disable_with: "Please wait..." } %>
+    <%= f.button "Cancel", type: "button", class: "pure-button pure-button-small pure-button-cancel", data: { dismiss: true } %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+if(<%= @content_pack.published? %>) {
+	scilearn.notification.error("<%= I18n.t('content_packs.controller.update.failed', name: @content_pack.name) %>");
+} else {
+	var data = "<%= escape_javascript(render(@content_pack.errors.any? ? 'form' : 'table')) %>";
+	if(<%= @content_pack.errors.any? %>) {
+		$('#edit_content_packs_dialog .aui_content').html(data);
+	} else {
+		var container = $("#content_packs_table");
+		if(container.length === 1) {
+			container.dataTable().fnDestroy();
+			container.html(data);
+			scilearn.pack.initTable()
+		} else {
+			 $(".content header .content-title").text("<%= @content_pack.name %>");
+		}
+		scilearn.panel["editContentPack"].close();
+	}
+}

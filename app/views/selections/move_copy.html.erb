@@ -1,0 +1,13 @@
+<div id="move_copy_selection">
+  <p><b>Selection</b>: <span><%= @selection.title %></span></p>
+  <p><b>Current Content Pack</b>: <span><%= @content_pack.name %></span></p>
+  <%= form_for :content_pack,:remote => true, :html => { :id => "move_copy_form" } do |f|%>
+    <%= f.label :id, "Content Packs"%>
+    <%= f.select :id , @content_packs.collect { |c| [c.name, c.id] }, :selected => @content_packs.first.id %>
+    <div class="actions pure-u-1">
+      <%= f.button "Move", :name=>"move", class: "pure-button pure-button-small pure-button-success", data: { disable_with: "Please wait..." } %>
+      <%= f.button "Copy", :name=>"copy", class: "pure-button pure-button-small pure-button-success", data: { disable_with: "Please wait..." } %>
+      <%= f.button "Cancel", type: "button", class: "pure-button pure-button-small pure-button-cancel", data: { dismiss: true } %>
+    </div>
+  <%end%>
+</div>

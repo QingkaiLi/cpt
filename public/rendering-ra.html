@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rendering of RA content</title>
+    <link href="css/ra.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+<!--    <link href="css/raptor-front-end.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!--    <script type="text/javascript" src="js/raptor.min.js"></script>
+    <script type="text/javascript">
+      jQuery(function($) {
+        $('.editable').raptor({
+          "plugins": {"dock": {"docked": true}}
+        });
+      });
+    </script>
+-->
+  </head>
+  
+  <body>
+    <div id="controls">
+      <div id="controls-rendering">
+	<h2>Rendering Controls (just a mock-up, buttons have no effect)</h2>
+	Book pages per Web page: 
+	<input type="radio" name="bpage" value="1"> 1  
+	<input type="radio" name="bpage" value="2" checked="yes"> 2<br/>
+	
+	Page width:  
+	<input type="radio" name="bpagew" value="narrow"> Narrow  
+	<input type="radio" name="bpagew" value="medium" checked="yes"> Medium  
+	<input type="radio" name="bpagew" value="wide"> Wide<br/>
+	
+	Page height:  
+	<input type="radio" name="bpageh" value="short"> Short  
+	<input type="radio" name="bpageh" value="medium"> Medium  
+	<input type="radio" name="bpageh" value="long" checked="yes"> Long<br/>
+	
+	Font size:  
+	<input type="radio" name="bpagef" value="small"> Small  
+	<input type="radio" name="bpagef" value="normal"> Normal  
+	<input type="radio" name="bpagef" value="large" checked="yes"> Large<br/>
+	
+	Story: <select id="stories"></select><br/>
+
+	<button type="button" id="bt-render">Render</button> <br/><br/>
+      </div>
+      <div id="controls-formatting">
+	<h2>Formatting Controls</h2>
+	<h3>Apply to selected words</h3>
+	Text size:
+	<input type="radio" name="word-text-size" value="small"> Small
+	<input type="radio" name="word-text-size" value="normal" checked="yes"> Normal
+	<input type="radio" name="word-text-size" value="large"> Large<br/>
+	Font:
+	<select id="word-font">
+	  <option>Times New Roman</option>
+	  <option>Georgia</option>
+	  <option>Arial</option>
+	  <option>Verdana</option>
+	  <option>Courier New</option>
+	  <option>Lucida Console</option>
+	</select>
+	Bold:
+	<input type="checkbox" id="word-bold" checked="no">
+	Italic:
+	<input type="checkbox" id="word-italic" checked="no"><br/>
+	<button type="button" id="bt-word-apply">Apply</button>
+
+	<h3>Apply to selected sentences</h3>
+	Text size:
+	<input type="radio" name="sentence-text-size" value="small"> Small
+	<input type="radio" name="sentence-text-size" value="normal" checked="yes"> Normal
+	<input type="radio" name="sentence-text-size" value="large"> Large<br/>
+	Font:
+	<select id="sentence-font">
+	  <option>Times New Roman</option>
+	  <option>Georgia</option>
+	  <option>Arial</option>
+	  <option>Verdana</option>
+	  <option>Courier New</option>
+	  <option>Lucida Console</option>
+	</select>
+	Bold:
+	<input type="checkbox" id="sentence-bold" checked="no">
+	Italic:
+	<input type="checkbox" id="sentence-italic" checked="no"><br/>
+	<button type="button" id="bt-sentence-apply">Apply</button>
+	<h3>Apply to selected paragraphs</h3>
+	Text size:
+	<input type="radio" name="paragraph-text-size" value="small"> Small
+	<input type="radio" name="paragraph-text-size" value="normal" checked="yes"> Normal
+	<input type="radio" name="paragraph-text-size" value="large"> Large<br/>
+	Font:
+	<select id="paragraph-font">
+	  <option>Times New Roman</option>
+	  <option>Georgia</option>
+	  <option>Arial</option>
+	  <option>Verdana</option>
+	  <option>Courier New</option>
+	  <option>Lucida Console</option>
+	</select>
+	Bold:
+	<input type="checkbox" id="paragraph-bold" checked="no">
+	Italic:
+	<input type="checkbox" id="paragraph-italic" checked="no"><br/>
+	<button type="button" id="bt-paragraph-apply">Apply</button>
+<!--
+
+	<button type="button">Merge selected blocks</button>
+	<button type="button">Explode selected blocks</button><br/>
+	<button type="button">Create new block after selected block</button>
+	<button type="button">Create new sentence in selected block</button><br/>
+	<button type="button">Delete selected</button><br/>
+	<button type="button">Make selected image right-floating</button>
+	<button type="button">Make selected image left-floating</button><br/>
+	Apply style to selected: 
+	<select id="stories">
+	  <option>Normal</option>
+	  <option>Title</option>
+	  <option>Quotation</option>
+	  <option>Poetry</option>
+	  <option>Tabular</option>
+	</select>
+-->
+      </div>
+    </div>
+    <div id="ra-web-page" class="book-pages">
+    </div>
+    <script>
+      $(function() {
+        var re = new RenderingEngine();
+        initStories();
+        document.getElementById('bt-render').onclick = re.render;
+        document.getElementById('bt-word-apply').onclick = applyWords;
+        document.getElementById('bt-sentence-apply').onclick = applySentences;
+        document.getElementById('bt-paragraph-apply').onclick = applyParagraphs;
+      });
+      var initStories = function() {
+      var selectTag = document.getElementById('stories');
+        for (var i = 0 ; i < stories.length ; i++) {
+            var newElt = document.createElement('option');
+            newElt.value=i;
+            newElt.innerHTML = stories[i].title;
+            selectTag.appendChild(newElt);
+        }			   
+      };
+    </script>
+    <script src="js/ra-content-words.js"></script>
+    <script src="js/ra-logic.js"></script>
+    <script src="js/ra-ui.js"></script>
+  </body>
+</html>

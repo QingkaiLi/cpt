@@ -1,0 +1,10 @@
+var data = "<%= escape_javascript(render(@content_pack.errors.any? ? 'form' : 'table')) %>";
+if(<%= @content_pack.errors.any? %>) {
+	$('#new_content_packs_dialog .aui_content').html(data);
+} else {
+	var container = $('#content_packs_table');
+	container.dataTable().fnDestroy();
+	scilearn.panel["newContentPack"].close();
+	container.html(data);
+	scilearn.pack.initTable()
+}

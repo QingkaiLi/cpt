@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sentence and Words in RA CPT</title>
+  </head>
+  
+  <body>
+    <h2>Introduction</h2>
+    <p>This demo shows how text is parsed and split into words and sentences as described <a href="http://wiki.scilearn.com/display/prodmanagement/Determining+Sentence+Boundaries+and+Word+Boundaries">on the wiki</a>. You can input or copy some text into the text area and click the "Parse" button to launch parsing.</p>
+    <p>Section 3. is the result of parsing on the test cases descibed in the wiki. For this demo, the special words that do not trigger a sentence boundary after their trailing dots are:
+      <ul>
+	<li>Dr.</li>
+	<li>Mr.</li>
+	<li>U.S.</li>
+	<li>U.S.A.</li>
+      </ul>
+    </p>
+    <p>Please put your comments, test cases, suggestions and modifications on the wiki, I will modify this demo accordingly.<p>
+    <p>Note that parsing words into prefix-word-suffix is not done yet.</p>
+    <h2>1. Text to Parse</h2>
+    <textarea id="text-input" rows="20" cols="50"></textarea><br/>
+    <button id="btn-parse">Parse</button>
+    <h2>2. Parsed Text</h2>
+    <div id="parsed-data">
+    </div>
+    <h2>3. Parsed Test Cases</h2>
+    <div id="test-cases">
+    </div>
+    <script src="js/splitting.js"></script>
+    <script src="js/test_split.js"></script>
+    <script>
+    var parser;
+    var displaySentences = function(sentences) {
+        var sentenceList = document.createElement("ul");
+        for (var i = 0 ; i < sentences.length ; i++) {
+	    var item = document.createElement("li");
+	    item.innerHTML = sentences[i].join("");
+            var wordList = document.createElement("ul");
+            for (var j = 0 ; j < sentences[i].length ; j++) {
+                var word = document.createElement("li");
+                word.innerHTML = sentences[i][j];
+                wordList.appendChild(word);
+            }
+            item.appendChild(wordList);
+	    sentenceList.appendChild(item);
+	}
+	return sentenceList;
+    };
+    var displayOutput = function(input) {
+        var outputDiv = document.getElementById('parsed-data');
+        outputDiv.innerHTML = "";
+        outputDiv.appendChild(input);
+    };
+    var displayTests = function(input) {
+        var outputDiv = document.getElementById('test-cases');
+        outputDiv.innerHTML = "";
+        outputDiv.appendChild(input);
+    };
+    var runTests = function() {
+        displayTests(makeTests());
+    };
+    var makeTests = function() {
+        var testList = document.createElement("ol");
+        for (var i = 0 ; i < cases.length ; i++) {
+	    var item = document.createElement("li");
+	    item.innerHTML = cases[i];
+            item.appendChild(displaySentences(parser.parse(cases[i])));
+	    testList.appendChild(item);
+        }
+        return testList;
+    };
+    window.onload = function() {
+        parser = new RAParser();
+        document.getElementById('btn-parse').onclick = function() {displayOutput(displaySentences(parser.parse(document.getElementById('text-input').value)));};
+        runTests();
+    };
+    </script>
+  </body>
+</html>

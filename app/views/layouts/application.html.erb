@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Cpt</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title><%= content_for?(:title) ? "#{APP_CONFIG['app_name']} - #{yield(:title)}" : APP_CONFIG['app_name'] %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag :application %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body id="<%= controller_name %>_<%= action_name %>">
+    <div id="container" class="pure-g">
+      <div class="pure-u-1">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      </div>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= render "header" %>
+      <%= yield %>
+      <div class="pure-u-1">
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+    </div>
+  </body>
 </html>

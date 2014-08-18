@@ -1,0 +1,88 @@
+@import "mixin";
+
+@mixin boder {
+  background-color: #999;
+  filter: Alpha(opacity = 50);
+  background-color: rgba(153, 153, 153, .5);
+}
+.aui_outer {
+  .aui_border {
+    .aui_nw,
+    .aui_n,
+    .aui_ne,
+    .aui_sw,
+    .aui_s,
+    .aui_se {
+      height: 8px;
+      @include boder;
+    }
+    .aui_w,
+    .aui_e {
+      width: 8px;
+      @include boder;
+    }
+    .aui_nw {
+      border-radius: 10px 0 0 0;
+    }
+    .aui_ne {
+      border-radius: 0 10px 0 0;
+    }
+    .aui_sw {
+      border-radius: 0 0 0 10px;
+    }
+    .aui_se {
+      border-radius: 0 0 10px 0;
+    }
+    .aui_inner {
+      background-color: #fff;
+      .aui_header {
+        .aui_title {
+          color: #666;
+          font-size: 19px;
+          font-weight: bold;
+          padding: 15px 0;
+          margin: 0 15px;
+          border-bottom: 1px dotted #ccc;
+        }
+        .aui_close {
+          position: absolute;
+          background: image-url("dialog-close-button.png") no-repeat transparent;
+          width: 34px;
+          height: 34px;
+          top: -10px;
+          right: -10px;
+          display: inline-block;
+          cursor: pointer;
+          border: 0;
+          outline: none;
+          font-size: 1px;
+          color: transparent;
+        }
+      }
+      .aui_footer {
+        text-align: right;
+        .aui_buttons {
+          margin: 15px;
+          button {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.aui_content {
+  color: #666;
+  font-size: 12px;
+  form {
+    .actions {
+      font-size: 0px;
+      margin: 15px 0;
+      text-align: right;
+      button {
+        margin-left: 10px;
+        font-size: 13px;
+      }
+    }
+  }
+}

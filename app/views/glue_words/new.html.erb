@@ -1,0 +1,11 @@
+<%= form_tag glue_words_upload_path, id: "glue_word_upload", class: "pure-form pure-form-aligned" do %>
+  <fieldset>
+    <p class="alert-explanation"></p>
+    <div class="pure-control-group">
+      <label for="glue_word_list_name">Upload File:</label>
+      <span id="glue_word_list_name">Supported file format is txt</span>
+      <a href="#" id="browse_glue_word_list_btn" class="pure-button pure-button-small pure-button-cancel">Browse</a>
+      <input id="browse_glue_word_list" name="file" type="file" accept="text/plain">
+    </div>
+  </fieldset>
+<% end %>
