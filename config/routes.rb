@@ -1,4 +1,30 @@
 Cpt::Application.routes.draw do
+  resources :word_audio_status, only: [:index, :show, :update, :edit]
+  resources :glue_words, only: [:new]
+  post 'glue_words/upload', to: 'glue_words#upload', as: 'glue_words_upload'
+
+  resources :content_packs
+  resources :pronunciations, only: [:index, :update]
+  resources :audios, only: [:update]
+
+  resources :content_packs do
+    resources :topics, shallow: true
+    resources :selections
+
+    post 'topics/ordering/:id', to: 'topics#ordering', as: 'ordering_topics'
+    post 'selections/ordering/:id', to: 'selections#ordering', as: 'ordering_selections'
+    get 'selections/:id/move_copy', to: 'selections#move_copy', as: 'move_copy_new'
+    post 'selections/:id/move', to: 'selections#move'
+    post 'selections/:id/copy', to: 'selections#copy'
+  end
+
+  #get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'login', to: 'sessions#index', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  root :to => "content_packs#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -39,7 +65,7 @@ Cpt::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

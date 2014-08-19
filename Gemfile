@@ -20,7 +20,7 @@ end
 
   # Uncomment the next line if you want to use MySQL as the database for
   # Active Record
-  gem 'mysql2','<= 0.3.13'
+  gem 'mysql2','<= 0.3.11'
 
   # Uncomment the next line if you want to use SQLite3 as the database
   # for Active Record
@@ -67,6 +67,7 @@ group :development do
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-maintenance', require: false
   gem "better_errors"
+  gem "pry"
 end
 
 group :test do
@@ -103,6 +104,9 @@ gem 'purecss'
 
 # add jquery datatable plug-in
 gem 'jquery-datatables-rails'#, git: 'git://github.com/rweng/jquery-datatables-rails.git'
+
+# add jquery fileupload plug-in
+gem "jquery-fileupload-rails"
 
 # Use qTip2 jQuery plugin show tooltip
 gem 'jquery-qtip2-rails'

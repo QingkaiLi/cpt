@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821081150) do
+ActiveRecord::Schema.define(version: 20131018024946) do
+
+  create_table "audio_statuses", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "audios", force: true do |t|
+    t.string   "file_name",  null: false
+    t.binary   "audio"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "content_packs", force: true do |t|
     t.string   "name",            limit: 256
@@ -31,6 +43,18 @@ ActiveRecord::Schema.define(version: 20130821081150) do
     t.string "name"
   end
 
+  create_table "pronunciations", force: true do |t|
+    t.string   "dictionary_key",              null: false
+    t.string   "phonemes",        limit: 512
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "audio_status_id"
+  end
+
+  add_index "pronunciations", ["audio_status_id"], name: "fk_pronunciations_audio_statuses", using: :btree
+  add_index "pronunciations", ["user_id"], name: "fk_pronunciations_users", using: :btree
+
   create_table "selections", force: true do |t|
     t.string   "title",                  limit: 256,  null: false
     t.string   "grade_equivalent_level"
@@ -40,11 +64,11 @@ ActiveRecord::Schema.define(version: 20130821081150) do
     t.boolean  "internationally"
     t.string   "description",            limit: 1024
     t.string   "cover_image"
-    t.string   "author"
-    t.string   "illustrator"
-    t.string   "publisher"
-    t.string   "intro_text"
-    t.string   "intro_audio"
+    t.string   "author",                 limit: 256
+    t.string   "illustrator",            limit: 256
+    t.string   "publisher",              limit: 256
+    t.string   "intro_text",             limit: 1024
+    t.string   "intro_audio",            limit: 1024
     t.boolean  "error"
     t.integer  "status_id"
     t.datetime "created_at"
@@ -81,5 +105,32 @@ ActiveRecord::Schema.define(version: 20130821081150) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "word_audio_statuses", force: true do |t|
+    t.string   "spelling",                     null: false
+    t.integer  "audio_id"
+    t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "audio_status_id"
+    t.string   "description",     limit: 1024
+  end
+
+  add_index "word_audio_statuses", ["audio_id"], name: "fk_word_audio_statuses_audios", using: :btree
+  add_index "word_audio_statuses", ["audio_status_id"], name: "fk_word_audio_statuses_audio_statuses", using: :btree
+  add_index "word_audio_statuses", ["spelling", "audio_id"], name: "idx_spelling_audio_id", unique: true, using: :btree
+  add_index "word_audio_statuses", ["spelling"], name: "index_word_audio_statuses_on_spelling", using: :btree
+  add_index "word_audio_statuses", ["user_id"], name: "fk_word_audio_statuses_users", using: :btree
+
+  create_table "words", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "text"
+    t.string   "alt_text",             limit: 1024
+    t.integer  "word_audio_status_id"
+  end
+
+  add_index "words", ["word_audio_status_id"], name: "fk_words_word_audio_statuses", using: :btree
 
 end

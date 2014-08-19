@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     end
 
     def create_from_omniauth(auth)
+      # binding.pry
       create! do |user|
         user.provider = auth['provider']
         user.uid = auth['uid']

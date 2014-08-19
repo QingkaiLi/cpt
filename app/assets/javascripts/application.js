@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery.qtip.basic
 //= require jquery.artDialog.source
-//= require jquery.ui.sortable
+//= require jquery-ui/sortable
 //= require gritter
 //= require dataTables/jquery.dataTables
 //= require turbolinks
