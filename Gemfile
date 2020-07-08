@@ -42,7 +42,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 3.1.3'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -103,7 +103,7 @@ gem 'omniauth-cas'
 gem 'purecss'
 
 # add jquery datatable plug-in
-gem 'jquery-datatables-rails'#, git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-datatables-rails', '>= 2.2.3' #, git: 'git://github.com/rweng/jquery-datatables-rails.git'
 
 # add jquery fileupload plug-in
 gem "jquery-fileupload-rails"
