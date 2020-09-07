@@ -75,16 +75,16 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 2.1.0', require: false
   gem 'database_cleaner'
-  gem 'pickle', require: false
+  gem 'pickle', '>= 0.4.11', require: false
   gem 'selenium-webdriver'
   # gem 'capybara-webkit' if RUBY_PLATFORM =~ /darwin/
   gem 'ci_reporter','>= 1.9.0'
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem "guard-rspec"
-  gem "guard-cucumber"
+  gem "guard-cucumber", ">= 1.4.1"
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
