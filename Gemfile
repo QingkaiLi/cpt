@@ -96,7 +96,7 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'omniauth'
+gem 'omniauth', '>= 2.0.0'
 gem 'omniauth-cas'
 
 # Use prue css
