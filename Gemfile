@@ -2,7 +2,7 @@
 source "http://ruby.taobao.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '6.0.3.5'
 
 platforms :jruby do
   # Use jdbcmysql as the database for Active Record
@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
@@ -100,7 +100,7 @@ gem 'omniauth'
 gem 'omniauth-cas'
 
 # Use prue css
-gem 'purecss'
+gem 'purecss', '>= 0.5.0.1'
 
 # add jquery datatable plug-in
 gem 'jquery-datatables-rails'#, git: 'git://github.com/rweng/jquery-datatables-rails.git'
