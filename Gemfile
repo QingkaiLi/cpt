@@ -74,7 +74,7 @@ group :test do
   gem 'debugger'
   gem 'rspec-rails'
   gem 'mocha'
-  gem 'launchy'
+  gem 'launchy', '>= 2.4.2'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
@@ -88,7 +88,7 @@ group :test do
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "site_prism", "~> 2.7"
 end
 
 group :development, :test do
@@ -97,7 +97,7 @@ group :development, :test do
 end
 
 gem 'omniauth'
-gem 'omniauth-cas'
+gem 'omniauth-cas', '>= 1.0.4'
 
 # Use prue css
 gem 'purecss'
