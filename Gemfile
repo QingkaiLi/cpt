@@ -66,7 +66,7 @@ group :development do
   gem 'capistrano', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-maintenance', require: false
-  gem "better_errors"
+  gem "better_errors", ">= 2.8.0"
   gem "pry"
 end
 
@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.1', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
@@ -87,8 +87,8 @@ group :test do
   gem "guard-cucumber"
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
-  gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "capybara", ">= 2.4.1"
+  gem "site_prism", "~> 2.6"
 end
 
 group :development, :test do
@@ -97,7 +97,7 @@ group :development, :test do
 end
 
 gem 'omniauth'
-gem 'omniauth-cas'
+gem 'omniauth-cas', '>= 1.0.4'
 
 # Use prue css
 gem 'purecss'
