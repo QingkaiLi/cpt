@@ -2,7 +2,7 @@
 source "http://ruby.taobao.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '5.2.8.1'
 
 platforms :jruby do
   # Use jdbcmysql as the database for Active Record
@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
