@@ -97,7 +97,7 @@ group :development, :test do
 end
 
 gem 'omniauth'
-gem 'omniauth-cas'
+gem 'omniauth-cas', '>= 1.1.1'
 
 # Use prue css
 gem 'purecss'
