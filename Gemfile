@@ -88,7 +88,7 @@ group :test do
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "site_prism", "~> 2.6"
 end
 
 group :development, :test do
