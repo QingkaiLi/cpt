@@ -33,13 +33,13 @@ end
 # end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -88,7 +88,7 @@ group :test do
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "site_prism", "~> 2.6"
 end
 
 group :development, :test do
