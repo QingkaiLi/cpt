@@ -2,7 +2,7 @@
 source "http://ruby.taobao.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '5.0.0'
 
 platforms :jruby do
   # Use jdbcmysql as the database for Active Record
@@ -33,16 +33,16 @@ end
 # end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.5'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.1'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.0.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
@@ -88,7 +88,7 @@ group :test do
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "site_prism", "~> 2.6"
 end
 
 group :development, :test do
