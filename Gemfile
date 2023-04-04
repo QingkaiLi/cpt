@@ -2,7 +2,7 @@
 source "http://ruby.taobao.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '6.1.7.3'
 
 platforms :jruby do
   # Use jdbcmysql as the database for Active Record
@@ -33,26 +33,26 @@ end
 # end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 6.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 2.7.2'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.2.2'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.4.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '>= 5.0.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.5', '>= 1.5.3'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 1.0.0', require: false
 end
 
 # Use ActiveModel has_secure_password
@@ -66,7 +66,7 @@ group :development do
   gem 'capistrano', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-maintenance', require: false
-  gem "better_errors"
+  gem "better_errors", ">= 2.8.0"
   gem "pry"
 end
 
@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 2.1.0', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
@@ -88,7 +88,7 @@ group :test do
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
   gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "site_prism", "~> 2.7"
 end
 
 group :development, :test do
@@ -96,8 +96,8 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'omniauth'
-gem 'omniauth-cas'
+gem 'omniauth', '>= 2.0.0'
+gem 'omniauth-cas', '>= 1.1.1'
 
 # Use prue css
 gem 'purecss'
@@ -115,6 +115,6 @@ gem 'jquery-qtip2-rails'
 gem "gritter", "~> 1.0.3"
 
 # Use jquery ui sortable
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '>= 6.0.0'
 
 gem 'will_paginate', '~> 3.0'
