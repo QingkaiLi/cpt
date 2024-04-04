@@ -2,7 +2,7 @@
 source "http://ruby.taobao.org"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '7.0.8.1'
 
 platforms :jruby do
   # Use jdbcmysql as the database for Active Record
@@ -33,26 +33,26 @@ end
 # end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.8'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.2.2'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.0.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '>= 2.2.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 1.0.0', require: false
 end
 
 # Use ActiveModel has_secure_password
@@ -72,10 +72,10 @@ end
 
 group :test do
   gem 'debugger'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.1.0'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
@@ -87,26 +87,26 @@ group :test do
   gem "guard-cucumber"
   gem "spork"#-rails", github: "sporkrb/spork-rails"
   gem "guard-spork"
-  gem "capybara"
-  gem "site_prism", "~> 2.4"
+  gem "capybara", ">= 2.4.2"
+  gem "site_prism", "~> 2.7"
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '>= 4.5.0'
   gem 'faker'
 end
 
-gem 'omniauth'
-gem 'omniauth-cas'
+gem 'omniauth', '>= 1.3.1'
+gem 'omniauth-cas', '>= 3.0.0'
 
 # Use prue css
-gem 'purecss'
+gem 'purecss', '>= 0.5.0.2'
 
 # add jquery datatable plug-in
-gem 'jquery-datatables-rails'#, git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-datatables-rails', '>= 3.0.0' #, git: 'git://github.com/rweng/jquery-datatables-rails.git'
 
 # add jquery fileupload plug-in
-gem "jquery-fileupload-rails"
+gem "jquery-fileupload-rails", ">= 0.4.2"
 
 # Use qTip2 jQuery plugin show tooltip
 gem 'jquery-qtip2-rails'
@@ -115,6 +115,6 @@ gem 'jquery-qtip2-rails'
 gem "gritter", "~> 1.0.3"
 
 # Use jquery ui sortable
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '>= 5.0.1'
 
 gem 'will_paginate', '~> 3.0'
