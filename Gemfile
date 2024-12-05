@@ -75,7 +75,7 @@ group :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'launchy'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 3.0.0', require: false
   gem 'database_cleaner'
   gem 'pickle', require: false
   gem 'selenium-webdriver'
