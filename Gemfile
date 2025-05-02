@@ -72,7 +72,7 @@ end
 
 group :test do
   gem 'debugger'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 8.0.0'
   gem 'mocha'
   gem 'launchy'
   gem 'cucumber-rails', require: false
